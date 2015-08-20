@@ -15,6 +15,36 @@
     var ts;
     var myDate;
 
+    function clickDay()
+    {
+      document.getElementById("day").click();
+    }
+
+    function clickMonth()
+    {
+      document.getElementById("month").focus();
+    }
+
+    function clickYear()
+    {
+      document.getElementById("year").focus();
+    }
+
+    function clickHour()
+    {
+      document.getElementById("hour").focus();
+    }
+
+    function clickMinute()
+    {
+      document.getElementById("minute").focus();
+    }
+
+    function clickSecond()
+    {
+      document.getElementById("second").focus();
+    }
+
     function CreateUnixTime()
     {
 
@@ -37,13 +67,14 @@
       // var myDate = new Date("July 1, 1978 02:30:00"); // Your timezone!
       var myEpoch = myDate.getTime()/1000.0;
       document.getElementById("UnixTimeTextArea").innerHTML = myEpoch;
+      document.getElementById("UnixTimeTextArea").select();
     }
 
 
     function CreateDate(ts)
     {
       myDate = new Date( ts *1000);
-      myDate = myDate.toGMTString()+"<br>"+myDate.toLocaleString();
+      myDate = myDate.toDateString() + " " + myDate.toTimeString();     // + " /n " + myDate.StringtoGMT()
       document.getElementById("CreateDateTextArea").innerHTML = myDate;
       document.getElementById("CreateDateTextArea").select();
     }
@@ -89,7 +120,7 @@
     </div>
 
     <div onclick="copyToClipboard()"class="box">
-      Copy
+      Generate
     </div>
 
     <div class="divider">
@@ -140,8 +171,8 @@
     <div class="divider">
     </div>
 
-    <form class="" action="index.html" method="post">
-      <div class="box">
+    <form class="()" action="index.html" method="post">
+      <div onclick="clickDay" id="dropDownDay" class="box">
         Day
       <select id="day"name="day" size="1">
         <option value="01"> 01</option>
@@ -178,7 +209,7 @@
       </select>
       </div>
 
-      <div class="box">
+      <div onclick ="clickMonth()" id="dropMonth" class="box">
         Mon
       <select id="month" name="month" size="1">
         <option value="January"> January</option>
@@ -199,7 +230,7 @@
       <div class="divider">
       </div>
 
-      <div class="box">
+      <div onclick="clickYear()" id="dropDownYear" class="box">
         Year
       <select id="year" name="year" size="1">
         <option value="1970"> 1970</option>
@@ -274,9 +305,10 @@
       </select>
       </div>
 
-      <div class="box">
+      <div onclick="clickHour()" id="dropDownHour" class="box">
         Hour
       <select id="hour" name="hour" size="1">
+        <option value="00"> 00</option>
         <option value="01"> 01</option>
         <option value="02"> 02</option>
         <option value="03"> 03</option>
@@ -300,7 +332,6 @@
         <option value="21"> 21</option>
         <option value="22"> 22</option>
         <option value="23"> 23</option>
-        <option value="24"> 24</option>
 
       </select>
       </div>
@@ -308,9 +339,10 @@
       <div class="divider">
       </div>
 
-      <div class="box">
+      <div onclick="clickMinute()" id="dropDownMinute" class="box">
         Minute
       <select  id="minute" name="minute" size="1">
+        <option value="00"> 00</option>
         <option value="01"> 01</option>
         <option value="02"> 02</option>
         <option value="03"> 03</option>
@@ -370,13 +402,13 @@
         <option value="57"> 57</option>
         <option value="58"> 58</option>
         <option value="59"> 59</option>
-        <option value="60"> 60</option>
       </select>
       </div>
 
-      <div class="box">
+      <div onclick="clickSecond()" id="dropDownSecond" class="box">
         Second
       <select  id="second" name="second" size="1">
+        <option value="00"> 00</option>
         <option value="01"> 01</option>
         <option value="02"> 02</option>
         <option value="03"> 03</option>
@@ -436,7 +468,6 @@
         <option value="57"> 57</option>
         <option value="58"> 58</option>
         <option value="59"> 59</option>
-        <option value="60"> 60</option>
       </select>
       </div>
 

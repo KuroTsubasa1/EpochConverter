@@ -1,12 +1,12 @@
 {
   "name": "EpochConverter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-packager ./ EpochConverter --out=dist/osx --platform=darwin --arch=x64 --version=0.30.4 --icon=assets/osx/icon.icns",
-    "pack": "electron-builder \"dist/osx/EpochConverter.app\" --platform=osx --out=\"dist/osx\" --config=\"packager.json\""
+    "pack": "electron-builder dist/osx/EpochConverter.app --platform=osx --out=dist/osx --config=packager.json"
   },
   "author": "Lasse Harm",
   "license": "ISC",
