@@ -17,17 +17,20 @@
 
     function clickDay()
     {
-      document.getElementById("day").click();
+      var test = document.getElementById("day").options[5].click();
+      // test.click();
     }
 
     function clickMonth()
     {
-      document.getElementById("month").focus();
+      document.getElementById("month").select();
     }
 
     function clickYear()
     {
       document.getElementById("year").focus();
+      var click = document.activeElement;
+      document.click.click();
     }
 
     function clickHour()
@@ -65,7 +68,7 @@
 
       var myDate = new Date(""+ monthtext + " " + daytext + " " + yeartext + " " + hourtext + ":" + minutetext + ":" + secondtext + ""); // Your timezone!
       // var myDate = new Date("July 1, 1978 02:30:00"); // Your timezone!
-      var myEpoch = myDate.getTime()/1000.0;
+      var myEpoch = myDate.getTime()/1000.0 + 3600;
       document.getElementById("UnixTimeTextArea").innerHTML = myEpoch;
       document.getElementById("UnixTimeTextArea").select();
     }
@@ -171,11 +174,11 @@
     <div class="divider">
     </div>
 
-    <form class="()" action="index.html" method="post">
-      <div onclick="clickDay" id="dropDownDay" class="box">
+    <form action="index.html" method="post">
+      <div onclick="clickDay()" id="dropDownDay" class="box">
         Day
-      <select id="day"name="day" size="1">
-        <option value="01"> 01</option>
+      <select id="day" name="day" size="1">
+        <option id="test" value="01"> 01</option>
         <option value="02"> 02</option>
         <option value="03"> 03</option>
         <option value="04"> 04</option>
