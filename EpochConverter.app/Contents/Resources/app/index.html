@@ -3,27 +3,72 @@
   <head>
 
     <link rel="stylesheet" href="EpochConverter.css" charset="utf-8">
+
     <!--Ubuntu Font Online-->
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 
+    <!--Allows ö ü ä-->
     <meta charset="utf-8">
 
+    <!--set title-->
     <title>EpochConverter</title>
 
+    <!--include jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!--starts javascript-->
     <script type="text/javascript">
 
     var ts;
     var myDate;
+    var unixInput;
+
+  function timeConverter()
+  {
+  unixInput = document.getElementById("unixInputField").value;
+  console.log(unixInput);
+  var a = new Date(unixInput * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  document.getElementById("unixInputTextArea").innerHTML = time;
+  document.getElementById("unixInputTextArea").select();;
+  return time;
+}
 
     function clickDay()
     {
-      var test = document.getElementById("day").options[5].click();
-      // test.click();
+      var test = document.getElementById("day").focus();
+      var keyboardEvent = document.createEvent("KeyboardEvent");
+      var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
+
+
+      keyboardEvent[initMethod](
+                   "keydown", // event type : keydown, keyup, keypress
+                    true, // bubbles
+                    true, // cancelable
+                    window, // viewArg: should be window
+                    false, // ctrlKeyArg
+                    false, // altKeyArg
+                    false, // shiftKeyArg
+                    false, // metaKeyArg
+                    40, // keyCodeArg : unsigned long the virtual key code, else 0
+                    40 // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
+                  );
+                  document.dispatchEvent(keyboardEvent);
     }
+      // test.click();
+
 
     function clickMonth()
     {
-      document.getElementById("month").select();
+      // document.getElementById("month").focus();
+      $('#day').focus();
     }
 
     function clickYear()
@@ -102,11 +147,12 @@
       document.getElementById("UnixTimestampRunning").innerHTML = ts;
     }, 1000);
 
-
+    // end of script
     </script>
   </head>
 
   <body>
+
 
     <div class="titleBar">
       <div class="titleText">
@@ -129,7 +175,7 @@
     <div class="divider">
     </div>
 
-    <textarea id="CopyField" name="CreateDateTextArea" rows="3" cols="25"></textarea>
+    <textarea readonly id="CopyField" name="CreateDateTextArea" rows="3" cols="25"></textarea>
 
     <div class="divider">
     </div>
@@ -149,7 +195,7 @@
       Generate
     </div>
 
-    <textarea id="CreateDateTextArea" name="CreateDateTextArea" rows="3" cols="25"></textarea>
+    <textarea readonly id="CreateDateTextArea" name="CreateDateTextArea" rows="3" cols="25"></textarea>
 
     <div class="divider">
     </div>
@@ -169,16 +215,16 @@
       Generate
     </div>
 
-    <textarea id="UnixTimeTextArea" name="CreateDateTextArea" rows="3" cols="25"></textarea>
+    <textarea readonly id="UnixTimeTextArea" name="CreateDateTextArea" rows="3" cols="25"></textarea>
 
     <div class="divider">
     </div>
 
     <form action="index.html" method="post">
-      <div onclick="clickDay()" id="dropDownDay" class="box">
+      <div onclick="clickDay()" id="dropDownDay" class="box" size="1">
         Day
-      <select id="day" name="day" size="1">
-        <option id="test" value="01"> 01</option>
+      <select id="day" name="day" >
+        <option value="01"> 01</option>
         <option value="02"> 02</option>
         <option value="03"> 03</option>
         <option value="04"> 04</option>
@@ -474,7 +520,33 @@
       </select>
       </div>
 
+      <div class="divider">
+      </div>
 
+      <div class="titleBar">
+        <div class="titleText">
+          Unix to Time
+        </div>
+        <div class="titleLine">
+        </div>
+      </div>
+
+      <div class="divider">
+      </div>
+
+      <div onclick="timeConverter()" class="box">
+        Generate
+      </div>
+
+      <div class="divider">
+      </div>
+
+      <textarea readonly id="unixInputTextArea" name="CreateDateTextArea" rows="3" cols="25"></textarea>
+
+      <input id="unixInputField" type="text" name="name" value="">
+
+      <div class="divider">
+      </div>
     </form>
   </body>
 </html>

@@ -39,9 +39,10 @@
                     style: {
                         '${Stage}': {
                             isStage: true,
-                            rect: [undefined, undefined, '550px', '400px'],
+                            rect: [undefined, undefined, '400px', '400px'],
+                            sizeRange: ['0px','','',''],
                             overflow: 'hidden',
-                            fill: ["rgba(255,255,255,0.00)",[270,[['rgba(81,44,139,0.00)',0],['rgba(255,255,255,1.00)',100]]]]
+                            fill: ["rgba(255,255,255,0.00)",[270,[['rgba(255,255,255,0.00)',100],['rgba(255,255,255,1.00)',100]]]]
                         }
                     }
                 },

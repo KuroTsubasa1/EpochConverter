@@ -11,7 +11,7 @@ app.on('ready', function(){
   splash.close();
   mainWindow = new BrowserWindow({width: 430, height: 600 });
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
-},4000);
+},5000);
 
 
 });
